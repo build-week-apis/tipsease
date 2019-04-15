@@ -32,7 +32,7 @@ example user account login:
                 {
                 "username": "username1",
                 "password": "password",
-                "type": "user"
+                "type": "users"
                 }
 
 example SW account login:
@@ -42,7 +42,7 @@ example SW account login:
                 "type": "serviceWorkers"
                 }
 
-you your response will include a JSON web token. save this token to local storage and send it as a header named "authorization" on every new response to the backend in order to validate credentials. Your response will also include a userInfo object which will include all of your users information, should you want to use this to set initial state for your application.
+your response will include a JSON web token. save this token to local storage and send it as a header named "authorization" on every new response to the backend in order to validate credentials. Your response will also include a userInfo object which will include all of your users information, should you want to use this to set initial state for your application.
 
 
                 /users/${id}
