@@ -12,6 +12,7 @@ exports.seed = function(knex, Promise) {
       bio: "this is my bio",
       timeAtJob: "2 years",
       tagline: "A helping hand :)",
+      workplace: "rusteak",
       accountBalance: 150.50,
       rating: 4.20,
       numOfRatings: 52
@@ -25,6 +26,7 @@ exports.seed = function(knex, Promise) {
       bio: "this is my bio",
       timeAtJob: "1 year 2 months",
       tagline: "Ill bring ya what you need!",
+      workplace: "Avion",
       accountBalance: 220.72,
       rating: 4.81,
       numOfRatings: 27

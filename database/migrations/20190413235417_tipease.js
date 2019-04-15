@@ -41,6 +41,8 @@ exports.up = function(knex, Promise) {
 
         tbl.string('bio', 256)
 
+        tbl.string('workplace', 128)
+
         tbl.float('accountBalance', 8)
         
         tbl.float('rating', 8)
