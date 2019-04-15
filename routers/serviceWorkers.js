@@ -3,7 +3,7 @@ const db = require('../server/dbConfig.js');
 const restricted = require('./restricted-middleware.js');
 const bcrypt = require('bcrypt');
 
-        //get by a specified ID
+        
 router.get('/:id', restricted, (req, res) => {
     let id = req.params.id;
     db('serviceWorkers')
@@ -13,9 +13,8 @@ router.get('/:id', restricted, (req, res) => {
         res.status(200).json(users);
         })
         .catch(err => res.send(err));
-});
-
-        //get all service workers
+});//get by a specified ID
+   
 router.get('/', restricted, (req, res) => {
     
     db('serviceWorkers')
@@ -23,10 +22,8 @@ router.get('/', restricted, (req, res) => {
             res.status(200).json(users);
         })
         .catch(err => res.status(500).json(err));
-});
+});//get all service workers
 
-
-        //update a specified ID
 router.put('/:id', restricted, (req, res) => {
     let id = req.params.id;
 
@@ -42,10 +39,8 @@ router.put('/:id', restricted, (req, res) => {
         res.status(201).json(users);
         })
         .catch(err => res.send(err));
-});
-
-
-        //rate a specified ID
+});//update a specified ID
+ 
 router.put('/rate/:id', restricted, (req, res) => {
     const id = req.params.id;
 
@@ -68,6 +63,6 @@ router.put('/rate/:id', restricted, (req, res) => {
                 .catch(err => res.status(500).json({message: 'something went wrong here'}));
         })
         .catch(err => res.status(404).json({message: "unable to find that user."}));
-});
+});//rate a specified ID
 
 module.exports = router;

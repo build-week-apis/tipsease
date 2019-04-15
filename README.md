@@ -83,6 +83,7 @@ will return a specific users information on a GET request, and is where you will
 
 
 **update specific users information**
+
         PUT: /users/${id}
 Update a users information. Simply send an object with the corresponding key/value pair for whatever you want updated. This includes password. This endpoint will handel any and all 'users' related updates
 
@@ -92,7 +93,8 @@ Update a serviceWorkers information. Simply send an object with the correspondin
 
 
 **rate a service worker**
-        `PUT: /serviceWorkers/rate/${id}`
+
+        PUT: /serviceWorkers/rate/${id}
 allows you to rate a specific service worker by that service workers ID. send the backend a message with the format:
 
         ```js

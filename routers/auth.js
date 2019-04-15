@@ -12,6 +12,12 @@ router.get('/users', (req,res) => {
         .catch(err => res.status(500).json(err))
 })//-----remember to delete this-----
 
+router.get('/serviceWorkers', (req,res) => {
+    db('serviceWorkers')
+        .then(response => res.status(200).json(response))
+        .catch(err => res.status(500).json(err))
+})//-----remember to delete this-----
+
 router.post('/users/login', (req,res) => {
     let { username, password, type } = req.body;
 
@@ -51,12 +57,6 @@ router.post('/users/register', (req,res) => {
         });
 })
 
-router.get('/serviceWorkers', (req,res) => {
-    db('serviceWorkers')
-        .then(response => res.status(200).json(response))
-        .catch(err => res.status(500).json(err))
-})//-----remember to delete this-----
-
 router.post('/serviceWorkers/register', (req,res) => {
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 10);
@@ -74,7 +74,6 @@ router.post('/serviceWorkers/register', (req,res) => {
             res.status(500).json({message: 'this acocunt already exists'});
         });
 })
-
 
 function generateToken(user){
     const payload = {

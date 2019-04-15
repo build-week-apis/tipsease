@@ -3,7 +3,7 @@ const db = require('../server/dbConfig.js');
 const restricted = require('./restricted-middleware.js');
 const bcrypt = require('bcrypt');
 
-        //get by a specified ID
+
 router.get('/:id', restricted, (req, res) => {
     let id = req.params.id;
     db('users')
@@ -13,10 +13,8 @@ router.get('/:id', restricted, (req, res) => {
         res.json(users);
         })
         .catch(err => res.send(err));
-});
+});//get by a specified ID
 
-
-        //update a specified ID
 router.put('/:id', restricted, (req, res) => {
     let id = req.params.id;
 
@@ -32,6 +30,6 @@ router.put('/:id', restricted, (req, res) => {
         res.json(users);
         })
         .catch(err => res.send(err));
-});
+});//update a specified ID
 
 module.exports = router;
