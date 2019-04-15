@@ -13,7 +13,7 @@ router.get('/users', (req,res) => {
         .catch(err => res.status(500).json(err))
 })//-----remember to delete this-----
 
-        //a;; logins, both SW and user, go through /users/login
+        //all logins, both SW and user, go through /users/login
 router.post('/users/login', (req,res) => {
     let { username, password, type } = req.body;
 
@@ -26,7 +26,8 @@ router.post('/users/login', (req,res) => {
                 const token = generateToken(user);
                 res.status(200).json({
                 message: `Welcome, ${user.username}!`,
-                token: token
+                token: token,
+                userInfo: user
                 });
             } else {
                 res.status(401).json({ message: 'Invalid Credentials' });
@@ -37,9 +38,11 @@ router.post('/users/login', (req,res) => {
         });
 })
 
+
+        //register a normal user
 router.post('/users/register', (req,res) => {
     let user = req.body;
-    const hash = bcrypt.hashSync(user.password, 10);
+    const hash = bcrypt.hashSync(user.password, 8);
     user.password = hash;
 
     db('users')
@@ -48,7 +51,7 @@ router.post('/users/register', (req,res) => {
             res.status(201).json(saved);
         })
         .catch(error => {
-            res.status(500).json(error);
+            res.status(500).json({message: 'this acocunt already exists'});
         });
 })
 
@@ -66,6 +69,7 @@ router.post('/serviceWorkers/register', (req,res) => {
     user.password = hash;
     user.accountBalance = 0;
     user.rating = 5;
+    user.numOfRatings = 0;
 
     db('serviceWorkers')
         .insert(user)
@@ -73,7 +77,7 @@ router.post('/serviceWorkers/register', (req,res) => {
             res.status(201).json(saved);
         })
         .catch(error => {
-            res.status(500).json(error);
+            res.status(500).json({message: 'this acocunt already exists'});
         });
 })
 

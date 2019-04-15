@@ -39,9 +39,13 @@ exports.up = function(knex, Promise) {
 
         tbl.string('tagline', 256)
 
+        tbl.string('bio', 256)
+
         tbl.float('accountBalance', 8)
         
         tbl.float('rating', 8)
+
+        tbl.integer('numOfRatings', 8)
     })
 };
 
