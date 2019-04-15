@@ -14,7 +14,6 @@ exports.up = function(knex, Promise) {
             .notNullable()
 
         tbl.string('photoUrl', 128)
-            .notNullable()
 
     }).createTable('serviceWorkers', tbl => {
         tbl.increments();
@@ -30,7 +29,6 @@ exports.up = function(knex, Promise) {
             .notNullable()
 
         tbl.string('photoUrl', 128)
-            .notNullable()
 
         tbl.string('serviceType', 128)
             .notNullable()
