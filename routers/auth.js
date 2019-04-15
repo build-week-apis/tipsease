@@ -6,14 +6,12 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 
-        //users auth
 router.get('/users', (req,res) => {
     db('users')
         .then(response => res.status(200).json(response))
         .catch(err => res.status(500).json(err))
 })//-----remember to delete this-----
 
-        //all logins, both SW and user, go through /users/login
 router.post('/users/login', (req,res) => {
     let { username, password, type } = req.body;
 
@@ -38,8 +36,6 @@ router.post('/users/login', (req,res) => {
         });
 })
 
-
-        //register a normal user
 router.post('/users/register', (req,res) => {
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 8);
@@ -55,8 +51,6 @@ router.post('/users/register', (req,res) => {
         });
 })
 
-
-        //serviceWorkers auth
 router.get('/serviceWorkers', (req,res) => {
     db('serviceWorkers')
         .then(response => res.status(200).json(response))
@@ -80,8 +74,6 @@ router.post('/serviceWorkers/register', (req,res) => {
             res.status(500).json({message: 'this acocunt already exists'});
         });
 })
-
-
 
 
 function generateToken(user){

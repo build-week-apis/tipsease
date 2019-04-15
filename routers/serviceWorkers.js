@@ -26,7 +26,6 @@ router.get('/', restricted, (req, res) => {
 });
 
 
-
         //update a specified ID
 router.put('/:id', restricted, (req, res) => {
     let id = req.params.id;

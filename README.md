@@ -1,56 +1,108 @@
 # build-tipsease-be
 
-        /auth/users:
+
+**dont use below enpoints in production code, theyre just a reference. these endpoint WILL NOT require an auth header to be accessed**
+        GET: /auth/users:
 
 get a list of users, will be usefull for checking out what a users data should roughly look like.
 
-        /auth/serviceWorkers:
+        GET: /auth/serviceWorkers:
 
 get a list of service workers, will be usefull for checking out what sw data should roughly look like.
+**^^^^^dont use above stylings in production code, theyre just a reference^^^^^**
+
+**-----------------------------**
+**-----------------------------**
 
 
 
 
-        /auth/users/register:
+**registration endpoints**
+
+        POST: /auth/users/register:
 
 pass a new user with fullName, password, photoUrl, username to create a new user account. all datapoints are manditory.
 
-        /auth/serviceWorkers/register:
+        POST:  /auth/serviceWorkers/register:
 
 pass a new user with 
-        mandatory: (fullName, password, photoUrl, username, serviceType) 
-        optional: (timeAtJob, tagline) 
+- [ ] mandatory: (fullName, password, photoUrl, username, serviceType) 
+- [ ] optional: (timeAtJob, tagline) 
 to create a new sw account. accountBalance is auto set to 0, and rating is auto set to 5.
 
 
 
-use 
-                /auth/user/login 
+**login endpoint for both types of users**
+
+        POST: /auth/user/login 
+
 for ALL LOGINS!! BOTH USERS AND SERVICE WORKERS. include a 'type' property on the object being sent to the backend with either 'users' for 'serviceWorkers' to dictate what type of account youre logging in with. 
 
 example user account login:
-                {
-                "username": "username1",
-                "password": "password",
-                "type": "users"
-                }
+
+        ```
+        {
+        "username": "username1",
+        "password": "password",
+        "type": "users"
+        }
+        ```
 
 example SW account login:
-                {
-                "username": "anotherNewUsername",
-                "password": "password",
-                "type": "serviceWorkers"
-                }
 
-your response will include a JSON web token. save this token to local storage and send it as a header named "authorization" on every new response to the backend in order to validate credentials. Your response will also include a userInfo object which will include all of your users information, should you want to use this to set initial state for your application.
+        ```
+        {
+        "username": "anotherNewUsername",
+        "password": "password",
+        "type": "serviceWorkers"
+        }
+        ```
+
+your response will include a JSON web token. save this token to local storage and send it as a header named "authorization" on every new response to the backend in order to validate credentials. on logout, delete the token from local storage. Your response will also include a userInfo object which will include all of your users information, should you want to use this to set initial state for your application.
 
 
-                /users/${id}
+**get ALL service worker information**
+
+        GET: /serviceWorkers
+will return an array with ALL serviceWorkers. this IS a restricted enpoint, unlike the first endpoint listed, and CAN be used for final development purposes/most likely for search. We can implement fuzzy search etc. when we get to that point.
+
+
+
+
+**get specific users information**
+
+        GET: /users/${id}
 will return a specific users information on a GET request, and is where you will send all of your PUT requests for updating users information.
 
 
-                /serviceWorkers/${id}
+        GET: /serviceWorkers/${id}
 will return a specific users information on a GET request, and is where you will send all of your PUT requests for updating users information.
 
-                /serviceWorkers/rate/${id}
-allows you to rate a user. send the backend a message with the format {rating: (number 1 through 5)}. a response of 1 will entail a successful request. 
+
+
+
+**update specific users information**
+        PUT: /users/${id}
+Update a users information. Simply send an object with the corresponding key/value pair for whatever you want updated. This includes password. This endpoint will handel any and all 'users' related updates
+
+        PUT: /serviceWorkers/${id}
+Update a serviceWorkers information. Simply send an object with the corresponding key/value pair for whatever you want updated. This includes password. This endpoint will handel any and all 'serviceWorkers' related updates
+
+
+
+**rate a service worker**
+        PUT: /serviceWorkers/rate/${id}
+allows you to rate a specific service worker by that service workers ID. send the backend a message with the format:
+
+        ```
+        {
+        rating: (number 1 through 5)
+        } 
+        ```
+
+a response of 1 will entail a successful request. 
+
+
+**Tip a Service Worker**
+
+still need to write these end points. need to figure out how stripe is goign to hook up before i actually implement this, however.
