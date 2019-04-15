@@ -1,0 +1,38 @@
+{
+  "name": "build-tipsease-be",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lambda-build-tipsease/build-tipsease-be.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lambda-build-tipsease/build-tipsease-be/issues"
+  },
+  "homepage": "https://github.com/lambda-build-tipsease/build-tipsease-be#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.5",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "helmet": "^3.16.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.16.5",
+    "knex-cleaner": "^1.1.4",
+    "sqlite3": "^4.0.6",
+    "stripe": "^6.28.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}
