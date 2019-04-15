@@ -1,8 +1,3 @@
-const localPg = {
-  host: "localhost",
-  database: "tipease"
- };
- const productionDbConnection = process.env.DATABASE_URL || localPg;
 
 module.exports = {
   development: {
@@ -23,14 +18,4 @@ module.exports = {
       directory: './database/seeds',
     },
   },
-  production: {
-    client: "pg",
-    connection: productionDbConnection,
-    migrations: {
-      directory: "./database/migrations"
-    },
-    seeds: {
-      directory: "./database/seeds"
-    }
-  }
 };
