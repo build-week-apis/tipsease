@@ -1,8 +1,9 @@
 # build-tipsease-be
 
+```https://buildtipease.herokuapp.com```
 
-**dont use below enpoints in production code, theyre just a reference. these endpoint WILL NOT require an auth header to be accessed**
-        GET: /auth/users:
+## ENDPOINTS
+        GET: /auth/users
 
 get a list of users, will be usefull for checking out what a users data should roughly look like.
 
@@ -40,7 +41,7 @@ for ALL LOGINS!! BOTH USERS AND SERVICE WORKERS. include a 'type' property on th
 
 example user account login:
 
-        ```
+        ```js
         {
         "username": "username1",
         "password": "password",
@@ -50,7 +51,7 @@ example user account login:
 
 example SW account login:
 
-        ```
+        ```js
         {
         "username": "anotherNewUsername",
         "password": "password",
@@ -94,9 +95,9 @@ Update a serviceWorkers information. Simply send an object with the correspondin
         PUT: /serviceWorkers/rate/${id}
 allows you to rate a specific service worker by that service workers ID. send the backend a message with the format:
 
-        ```
+        ```js
         {
-        rating: (number 1 through 5)
+        rating: 'any number 1 through 5 float'
         } 
         ```
 
