@@ -92,7 +92,7 @@ Update a serviceWorkers information. Simply send an object with the correspondin
 
 
 **rate a service worker**
-        PUT: /serviceWorkers/rate/${id}
+        `PUT: /serviceWorkers/rate/${id}`
 allows you to rate a specific service worker by that service workers ID. send the backend a message with the format:
 
         ```js
