@@ -28,7 +28,7 @@ pass a new user with fullName, password, photoUrl, username to create a new user
 
 pass a new user with 
 - [ ] mandatory: (fullName, password, photoUrl, username, serviceType) 
-- [ ] optional: (timeAtJob, tagline, bio) 
+- [ ] optional: (timeAtJob, tagline, bio, workplace) 
 to create a new sw account. accountBalance is auto set to 0, and rating is auto set to 5.
 
 
