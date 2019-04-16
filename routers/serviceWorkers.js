@@ -3,6 +3,17 @@ const db = require('../server/dbConfig.js');
 const restricted = require('./restricted-middleware.js');
 const bcrypt = require('bcrypt');
 
+router.get('/forDashboard/:id', (req, res) => {
+    let id = req.params.id;
+    db('serviceWorkers')
+        .where({id})
+        .first()
+        .then(users => {
+        res.status(200).json(users);
+        })
+        .catch(err => res.send(err));
+});//get by a specified ID unrestricted for dashboard
+
 router.get('/:id', restricted, (req, res) => {
     let id = req.params.id;
     db('serviceWorkers')

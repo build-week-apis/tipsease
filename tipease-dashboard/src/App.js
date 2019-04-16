@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import logo from './logo.png';
+import { Route, Link } from 'react-router-dom';
+import User from './User.js'
 
 const App = props => {
 
@@ -21,6 +23,10 @@ const App = props => {
 
   return (
     <div className="App">
+
+      <Route path="/fullUser/:id" render={props => <User {...props} />}/>
+
+
       <header>
         <img src={logo} />
         <h1>Welcome to the tipease dashboard!</h1>
