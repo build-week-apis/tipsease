@@ -20,7 +20,7 @@ get a list of service workers, will be usefull for checking out what sw data sho
 
 **registration endpoints**
 
-        POST: /auth/users/register:
+        POST: /auth/users/register
 
 pass a new user with fullName, password, photoUrl, username to create a new user account. all datapoints are manditory.
 
@@ -28,7 +28,7 @@ pass a new user with fullName, password, photoUrl, username to create a new user
 
 pass a new user with 
 - [ ] mandatory: (fullName, password, photoUrl, username, serviceType) 
-- [ ] optional: (timeAtJob, tagline, bio) 
+- [ ] optional: (timeAtJob, tagline, bio, workplace) 
 to create a new sw account. accountBalance is auto set to 0, and rating is auto set to 5.
 
 
@@ -108,4 +108,14 @@ a response of 1 will entail a successful request.
 
 **Tip a Service Worker**
 
-still need to write these end points. need to figure out how stripe is goign to hook up before i actually implement this, however.
+        PUT: /serviceWorkers/pay/:id
+send an object with the payment ammount in the form of: 
+        {
+                payment: 10 (or whatever the ammount is)
+        }
+
+
+**transfer money to bank**
+
+        PUT: /serviceWorkers/transferToBank/:id
+no body needs to be sent with this request, only the id in the query so the backend can look up which user is requesting a transfer.
