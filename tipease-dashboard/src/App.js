@@ -24,11 +24,11 @@ const App = props => {
   return (
     <div className="App">
 
-      <Route path="/fullUser/:id" render={props => <User {...props} />}/>
+      <Route path="/fullUser/:id" render={props => <User {...props} tickets={tickets} />}/>
 
 
       <header>
-        <img src={logo} />
+        <img className="logo" src={logo} alt="logo"/>
         <h1>Welcome to the tipease dashboard!</h1>
       </header>
       <h2>user request tickets</h2>
@@ -37,7 +37,22 @@ const App = props => {
           return(
             <div key={ticket.id} swid={ticket.sw_id} className="singleTicket">
               <h3 style={{textDecoration: "underline"}}><span style={{fontWeight: "200"}}>request from:</span> {ticket.username}</h3>
-              <p>balance inquiry: {ticket.balanceInquiry}</p>
+              <p>balance inquiry: ${ticket.balanceInquiry}</p>
+              <button 
+                            className="subPaymentButton"
+                            id={ticket.id}
+                            onClick={e => {
+                                console.log(e.target.id);
+                                axios
+                                  .delete(`https://buildtipease.herokuapp.com/tickets/deleteTicket/${e.target.id}`)
+                                  .then(res => {
+                                    console.log(res);
+                                    alert('Transaction submitted, transfering funds to service workers account!');
+                                  })
+                                  .catch(err => console.log(err));
+                            }}
+                            >submit transaction</button>
+              <Link to={`/fullUser/${ticket.sw_id}`}>see profile/all requests</Link>
             </div>
           );
         })}
