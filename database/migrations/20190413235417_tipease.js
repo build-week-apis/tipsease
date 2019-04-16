@@ -46,10 +46,28 @@ exports.up = function(knex, Promise) {
         tbl.float('rating', 8)
 
         tbl.integer('numOfRatings', 8)
+    }).createTable('bankTransfers', tbl => {
+        tbl.increments();
+
+        tbl.string('username', 128)
+            .notNullable()
+
+        tbl.float('balanceInquiry', 8)
+            .notNullable();
+
+        tbl
+            .integer('sw_id')
+            .unsigned()
+            .notNullable()
+            .references('id')
+            .inTable('serviceWorkers')
+            .onDelete('CASCADE')
+            .onUpdate('CASCADE');
     })
 };
 
 exports.down = function(knex, Promise) {
     return knex.schema.dropTableIfExists('users')
         .dropTableIfExists('serviceWorkers')
+        .dropTableIfExists('bankTransfers')
 };
