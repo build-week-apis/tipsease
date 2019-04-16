@@ -65,4 +65,26 @@ router.put('/rate/:id', restricted, (req, res) => {
         .catch(err => res.status(404).json({message: "unable to find that user."}));
 });//rate a specified ID
 
+router.put('/pay/:id', restricted, (req, res) => {
+    const id = req.params.id;
+    
+
+    db('serviceWorkers')
+        .where({id})
+        .first()
+        .then(user => {
+            let newAccBalance =  user.accountBalance + req.body.payment;
+            user.accountBalance = newAccBalance
+
+            db('serviceWorkers')
+                .update(user)
+                .where({id})
+                .then(finalUser => {
+                    res.status(201).json(finalUser);
+                })
+                .catch(err => res.status(500).json({message: 'something went wrong here'}));
+        })
+        .catch(err => res.status(404).json({message: "unable to find that user."}));
+});//rate a specified ID
+
 module.exports = router;

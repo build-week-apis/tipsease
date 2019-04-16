@@ -20,7 +20,7 @@ get a list of service workers, will be usefull for checking out what sw data sho
 
 **registration endpoints**
 
-        POST: /auth/users/register:
+        POST: /auth/users/register
 
 pass a new user with fullName, password, photoUrl, username to create a new user account. all datapoints are manditory.
 
@@ -108,4 +108,8 @@ a response of 1 will entail a successful request.
 
 **Tip a Service Worker**
 
-still need to write these end points. need to figure out how stripe is goign to hook up before i actually implement this, however.
+        PUT: /serviceWorkers/pay/:id
+send an object with the payment ammount in the form of: 
+        {
+                payment: 10 (or whatever the ammount is)
+        }
