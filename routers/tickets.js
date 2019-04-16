@@ -7,5 +7,6 @@ router.get('/allTickets', (req, res) => {
         res.status(200).json(tickets);
         })
         .catch(err => res.send(err));
-});//get a list of bannk request tickets
+});//get a list of bank request tickets
+
 module.exports = router;

@@ -117,5 +117,5 @@ send an object with the payment ammount in the form of:
 
 **transfer money to bank**
 
-        PUT: /transferToAccount/:id
+        PUT: /serviceWorkers/transferToBank/:id
 no body needs to be sent with this request, only the id in the query so the backend can look up which user is requesting a transfer.
