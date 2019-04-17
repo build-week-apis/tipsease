@@ -93,4 +93,5 @@ exports.down = function(knex, Promise) {
     return knex.schema.dropTableIfExists('users')
         .dropTableIfExists('serviceWorkers')
         .dropTableIfExists('bankTransfers')
+        .dropTableIfExists('tipHistory')
 };

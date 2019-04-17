@@ -38,7 +38,7 @@ router.post('/users/login', (req,res) => {
             }
         })
         .catch(error => {
-        res.status(500).json(error);
+            res.status(404).json({message: "Sorry, cant find that user!"});
         });
 })
 
@@ -53,7 +53,7 @@ router.post('/users/register', (req,res) => {
             res.status(201).json(saved);
         })
         .catch(error => {
-            res.status(500).json({message: 'this acocunt already exists'});
+            res.status(500).json({message: 'Error registering your account. Either this account already exists, or you didnt complete to form.'});
         });
 })
 
@@ -71,7 +71,7 @@ router.post('/serviceWorkers/register', (req,res) => {
             res.status(201).json(saved);
         })
         .catch(error => {
-            res.status(500).json({message: 'this acocunt already exists'});
+            res.status(500).json({message: 'Error registering your account. Either this account already exists, or you didnt complete to form.'});
         });
 })
 

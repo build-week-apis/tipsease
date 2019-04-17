@@ -52,7 +52,7 @@ h2{
   }
 }
 .tickets{
-  width: 70%;
+  width: 90%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -87,7 +87,8 @@ h2{
 }
 
 .singleTicket{
-  width: 100%;
+  width: 90%;
+  margin: auto;
   margin: 10px;
   border: 1px solid rgba(0, 0, 0, 0.55);
   border-left: 10px solid rgba(0, 0, 0, 0.55);

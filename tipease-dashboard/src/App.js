@@ -48,13 +48,11 @@ const App = props => {
       <div className="tiphistory">
         {tipHistory.length ? 
           tipHistory.map(tip => {
-            console.log(tip);
             return(
               <div className="tip" key={tip.id}>
                 <h3>{tip.swUsername}</h3>
                 <p>{tip.senderUsername}</p>
-                <p>{tip.dateRecieved}</p>
-                <p>{tip.tipAmmount}</p>
+                <p>${tip.tipAmount}</p>
               </div>
             );
           })
