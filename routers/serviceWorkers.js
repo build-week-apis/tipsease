@@ -90,12 +90,27 @@ router.put('/pay/:id', restricted, (req, res) => {
                 .update(user)
                 .where({id})
                 .then(finalUser => {
-                    res.status(201).json(finalUser);
+
+                    const newTip = {
+                        swUsername: user.username,
+                        senderUsername: req.body.senderUsername || "not supplied",
+                        dateRecieved: new Date(),
+                        tipAmount: req.body.payment,
+                        sw_id: id
+                    }
+
+                    db('tipHistory')
+                        .insert(newTip)
+                        .then(response => {
+                            res.status(201).json(response);
+                        })
+                        .catch(err => res.status(400).json({message: "error adding tip"}))
+                    //res.status(201).json(finalUser);
                 })
                 .catch(err => res.status(500).json({message: 'something went wrong here'}));
         })
         .catch(err => res.status(404).json({message: "unable to find that user."}));
-});//pay a serviceWorker a specified ammount
+});//pay a serviceWorker a specified ammount and add a payment to payment history.
 
 router.put('/transferToBank/:id', restricted, (req, res) => {
     const id = req.params.id;

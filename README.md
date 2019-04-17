@@ -109,9 +109,10 @@ a response of 1 will entail a successful request.
 **Tip a Service Worker**
 
         PUT: /serviceWorkers/pay/:id
-send an object with the payment ammount in the form of: 
+send an object with the payment ammount and name of user whos tipping in the form of: 
         {
-                payment: 10 (or whatever the ammount is)
+                payment: 10 (or whatever the ammount is),
+                senderUsername: "whatever their username is"
         }
 
 
@@ -119,3 +120,23 @@ send an object with the payment ammount in the form of:
 
         PUT: /serviceWorkers/transferToBank/:id
 no body needs to be sent with this request, only the id in the query so the backend can look up which user is requesting a transfer.
+
+**get list of all tip history**
+
+        GET: /tickets/tipHistory
+returns a list of all tips ever made.
+
+**get list of specified users tip history**
+
+        GET: /tickets/tipHistory/:id
+Returns a list of all tips a specific user has made.
+
+**get all request tickets for dashboard**
+
+        GET: /tickets/allTickets
+Returns a list of all requested tickets for bank transfer.
+
+**Delete a ticket for dashboard**
+
+        DELETE: /tickets/deleteTicket/:id
+Deletes tickets with specified id
