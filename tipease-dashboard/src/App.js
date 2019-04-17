@@ -63,7 +63,7 @@ const App = props => {
       <hr />
       <h2>user request tickets</h2>
       <div className="tickets">
-        {tickets.map(ticket => {
+        {tickets.length ? tickets.map(ticket => {
           return(
             <div key={ticket.id} swid={ticket.sw_id} className="singleTicket">
               <h3 style={{textDecoration: "underline"}}><span style={{fontWeight: "200"}}>request from:</span> {ticket.username}</h3>
@@ -85,7 +85,7 @@ const App = props => {
               <Link to={`/fullUser/${ticket.sw_id}`}>see profile/all requests</Link>
             </div>
           );
-        })}
+        }) : null}
       </div>
     </div>
   );
