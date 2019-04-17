@@ -8,6 +8,7 @@ import User from './User.js'
 const App = props => {
 
   const [tickets, setTickets] = useState([]);
+  const [tipHistory, setTipHistory] = useState([]);
 
   useEffect(() => {
     axios.get('https://buildtipease.herokuapp.com/tickets/allTickets')
@@ -16,10 +17,22 @@ const App = props => {
   },[])
 
   useEffect(() => {
+    axios.get('https://buildtipease.herokuapp.com/tickets/tipHistory')
+      .then(res => setTipHistory(res.data))
+      .catch(err => console.log(err));
+  },[])
+
+  useEffect(() => {
     axios.get('https://buildtipease.herokuapp.com/tickets/allTickets')
       .then(res => setTickets(res.data))
       .catch(err => console.log(err));
   },[tickets])
+
+  useEffect(() => {
+    axios.get('https://buildtipease.herokuapp.com/tickets/tipHistory')
+      .then(res => setTipHistory(res.data))
+      .catch(err => console.log(err));
+  },[tipHistory])
 
   return (
     <div className="App">
@@ -31,6 +44,23 @@ const App = props => {
         <img className="logo" src={logo} alt="logo"/>
         <h1>Welcome to the tipease dashboard!</h1>
       </header>
+      <h2>tip history</h2>
+      <div className="tiphistory">
+        {tipHistory.length ? 
+          tipHistory.map(tip => {
+            console.log(tip);
+            return(
+              <div className="tip" key={tip.id}>
+                <h3>{tip.swUsername}</h3>
+                <p>{tip.senderUsername}</p>
+                <p>{tip.dateRecieved}</p>
+                <p>{tip.tipAmmount}</p>
+              </div>
+            );
+          })
+          : null}
+      </div>
+      <hr />
       <h2>user request tickets</h2>
       <div className="tickets">
         {tickets.map(ticket => {

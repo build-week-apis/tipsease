@@ -94,7 +94,7 @@ router.put('/pay/:id', restricted, (req, res) => {
                     const newTip = {
                         swUsername: user.username,
                         senderUsername: req.body.senderUsername || "not supplied",
-                        dateRecieved: new Date(),
+                        dateRecieved: new Date(Date.now()),
                         tipAmount: req.body.payment,
                         sw_id: id
                     }
