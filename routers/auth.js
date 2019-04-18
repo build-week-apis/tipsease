@@ -48,7 +48,7 @@ router.post('/users/register', (req,res) => { //edited for postgres
     user.password = hash;
 
     db('users')
-        .insert(user).returning("id")
+        .insert(user).returning()
         .then(saved => {
             res.status(201).json(saved);
         })
@@ -66,7 +66,7 @@ router.post('/serviceWorkers/register', (req,res) => { //edited for postgres
     user.numOfRatings = 0;
 
     db('serviceWorkers')
-        .insert(user).returning("id")
+        .insert(user).returning()
         .then(saved => {
             res.status(201).json(saved);
         })
