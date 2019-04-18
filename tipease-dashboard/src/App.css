@@ -1,5 +1,4 @@
 
-
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -53,7 +52,7 @@ h2{
   }
 }
 .tickets{
-  width: 70%;
+  width: 90%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -61,8 +60,35 @@ h2{
   max-width: 1000px;
 }
 
+.tiphistory{
+  width: 70%;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+  height: 200px;
+  overflow-y: scroll;
+  background: rgba(0, 0, 0, 0.009);
+  border: 1px solid black;
+  border-radius: 20px;
+  text-align: center;
+  padding: 10px;
+}
+
+.tip{
+  width: 90%;
+  margin: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.55);
+  border-left: 10px solid rgba(0, 0, 0, 0.55);
+  background: rgba(218, 218, 218, 0.269);
+  border-radius: 10px;
+  padding: 10px;
+}
+
 .singleTicket{
-  width: 100%;
+  width: 90%;
+  margin: auto;
   margin: 10px;
   border: 1px solid rgba(0, 0, 0, 0.55);
   border-left: 10px solid rgba(0, 0, 0, 0.55);
@@ -77,9 +103,12 @@ h2{
   z-index: 2;
   width: 100vw;
   height: 100vh;
+  position: fixed;
+  top: 0;
 }
 
 .fullUserInfo{
+  top: 0;
   margin: 70px auto;
   width: 80%;
   padding: 10px;

@@ -63,6 +63,29 @@ exports.up = function(knex, Promise) {
             .inTable('serviceWorkers')
             .onDelete('CASCADE')
             .onUpdate('CASCADE');
+    }).createTable('tipHistory', tbl => {
+        tbl.increments();
+
+        tbl.string('swUsername', 128)
+            .notNullable()
+
+        tbl.string('senderUsername', 128)
+            .notNullable()
+
+        tbl.string('dateRecieved', 128)
+            .notNullable()
+
+        tbl.float('tipAmount', 8)
+            .notNullable();
+
+        tbl
+            .integer('sw_id')
+            .unsigned()
+            .notNullable()
+            .references('id')
+            .inTable('serviceWorkers')
+            .onDelete('CASCADE')
+            .onUpdate('CASCADE');
     })
 };
 
@@ -70,4 +93,5 @@ exports.down = function(knex, Promise) {
     return knex.schema.dropTableIfExists('users')
         .dropTableIfExists('serviceWorkers')
         .dropTableIfExists('bankTransfers')
+        .dropTableIfExists('tipHistory')
 };
