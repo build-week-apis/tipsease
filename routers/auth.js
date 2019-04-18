@@ -53,6 +53,7 @@ router.post('/users/register', (req,res) => { //edited for postgres
             res.status(201).json(saved);
         })
         .catch(error => {
+            console.log(error);
             res.status(500).json({message: 'Error registering your account. Either this account already exists, or you didnt complete to form.'});
         });
 })
@@ -71,6 +72,7 @@ router.post('/serviceWorkers/register', (req,res) => { //edited for postgres
             res.status(201).json(saved);
         })
         .catch(error => {
+            console.log(error);
             res.status(500).json({message: 'Error registering your account. Either this account already exists, or you didnt complete to form.'});
         });
 })
