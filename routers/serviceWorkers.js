@@ -46,7 +46,7 @@ router.put('/:id', restricted, (req, res) => {
         .update(req.body)
         .where({id})
         .then(users => {
-        res.status(201).json(users);
+            res.status(201).json(users);
         })
         .catch(err => res.status(500).json({message: "there was an error while updating your account!"}));
 });//update a specified ID

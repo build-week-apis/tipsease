@@ -42,13 +42,13 @@ router.post('/users/login', (req,res) => {
         });
 })
 
-router.post('/users/register', (req,res) => {
+router.post('/users/register', (req,res) => { //edited for postgres
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 8);
     user.password = hash;
 
     db('users')
-        .insert(user)
+        .insert(user, "id")
         .then(saved => {
             res.status(201).json(saved);
         })
@@ -57,7 +57,7 @@ router.post('/users/register', (req,res) => {
         });
 })
 
-router.post('/serviceWorkers/register', (req,res) => {
+router.post('/serviceWorkers/register', (req,res) => { //edited for postgres
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 10);
     user.password = hash;
@@ -66,7 +66,7 @@ router.post('/serviceWorkers/register', (req,res) => {
     user.numOfRatings = 0;
 
     db('serviceWorkers')
-        .insert(user)
+        .insert(user, "id")
         .then(saved => {
             res.status(201).json(saved);
         })
