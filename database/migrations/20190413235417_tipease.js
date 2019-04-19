@@ -13,7 +13,7 @@ exports.up = function(knex, Promise) {
         tbl.string('password', 128)
             .notNullable()
 
-        tbl.string('photoUrl', 500)
+        tbl.string('photoUrl')
 
     }).createTable('serviceWorkers', tbl => {
         tbl.increments();
@@ -28,7 +28,7 @@ exports.up = function(knex, Promise) {
         tbl.string('password', 128)
             .notNullable()
 
-        tbl.string('photoUrl', 500)
+        tbl.string('photoUrl')
 
         tbl.string('serviceType', 128)
             .notNullable()
