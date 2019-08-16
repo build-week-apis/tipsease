@@ -38,23 +38,20 @@ for ALL LOGINS!! BOTH USERS AND SERVICE WORKERS. include an 'isServiceWorker' pr
 
 example user account login:
 
-        ```js
         {
         "username": "username1",
         "password": "password",
         "isServiceWorker": false
         }
-        ```
+
 
 example SW account login:
 
-        ```js
         {
         "username": "anotherNewUsername",
         "password": "password",
         "isServiceWorker": true
         }
-        ```
 
 your response will include a JSON web token. save this token to local storage and send it as a header named "authorization" on every new response to the backend in order to validate credentials. on logout, delete the token from local storage. Your response will also include a userInfo object which will include all of your users information, should you want to use this to set initial state for your application.
 
@@ -90,11 +87,10 @@ Update a serviceWorkers information. Simply send an object with the correspondin
 
 allows you to rate a specific service worker by that service workers ID. send the backend a message with the format:
 
-        ```js
         {
         rating: 'any number 1 through 5 float'
         }
-        ```
+
 
 a response of 1 will entail a successful request.
 
@@ -102,9 +98,9 @@ a response of 1 will entail a successful request.
 
         PUT: /serviceWorkers/pay/:id
 
-send an object with the payment ammount and name of user whos tipping in the form of:
+send an object with the payment amount and name of user who's tipping in the form of:
 {
-payment: 10 (or whatever the ammount is),
+payment: 10 (or whatever the amount is),
 senderUsername: "whatever their username is"
 }
 
