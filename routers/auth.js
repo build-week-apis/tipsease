@@ -5,18 +5,6 @@ const secret = require("../server/secret.js").jwtSecret;
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-router.get("/users", (req, res) => {
-  db("users")
-    .then(response => res.status(200).json(response))
-    .catch(err => res.status(500).json(err));
-}); //-----remember to delete this-----
-
-router.get("/serviceWorkers", (req, res) => {
-  db("serviceWorkers")
-    .then(response => res.status(200).json(response))
-    .catch(err => res.status(500).json(err));
-}); //-----remember to delete this-----
-
 router.post("/users/login", (req, res) => {
   let { username, password, isServiceWorker } = req.body;
 
