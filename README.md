@@ -1,6 +1,6 @@
-# build-tipsease-be
+# TipsEase API
 
-`https://buildtipease.herokuapp.com`
+`https://build-tipsease.herokuapp.com`
 
 ## ENDPOINTS
 
