@@ -18,27 +18,50 @@ router.get("/serviceWorkers", (req, res) => {
 }); //-----remember to delete this-----
 
 router.post("/users/login", (req, res) => {
-  let { username, password, type } = req.body;
+  let { username, password, isServiceWorker } = req.body;
 
-  db(type === "serviceWorkers" ? "serviceWorkers" : "users")
-    .where({ username })
-    .first()
-    .then(user => {
-      if (user && bcrypt.compareSync(password, user.password)) {
-        console.log(user);
-        const token = generateToken(user);
-        res.status(200).json({
-          message: `Welcome, ${user.username}!`,
-          token: token,
-          userInfo: user
-        });
-      } else {
-        res.status(401).json({ message: "Invalid Credentials" });
-      }
-    })
-    .catch(error => {
-      res.status(404).json({ message: "Sorry, cant find that user!" });
-    });
+  if (isServiceWorker === true) {
+    db("serviceWorkers")
+      .where({ username })
+      .first()
+      .then(user => {
+        console.log("service");
+        if (user && bcrypt.compareSync(password, user.password)) {
+          const token = generateToken(user);
+          res.status(200).json({
+            message: `Welcome, ${user.username}!`,
+            token: token,
+            userInfo: user
+          });
+        } else {
+          res.status(401).json({ message: "Invalid Credentials" });
+        }
+      })
+
+      .catch(error => {
+        res.status(404).json({ message: "Sorry, cant find that user!" });
+      });
+  } else {
+    db("users")
+      .where({ username })
+      .first()
+      .then(user => {
+        if (user && bcrypt.compareSync(password, user.password)) {
+          const token = generateToken(user);
+          res.status(200).json({
+            message: `Welcome, ${user.username}!`,
+            token: token,
+            userInfo: user
+          });
+        } else {
+          res.status(401).json({ message: "Invalid Credentials" });
+        }
+      })
+
+      .catch(error => {
+        res.status(404).json({ message: "Sorry, cant find that user!" });
+      });
+  }
 });
 
 router.post("/users/register", (req, res) => {
@@ -55,12 +78,10 @@ router.post("/users/register", (req, res) => {
     })
     .catch(error => {
       console.log(error);
-      res
-        .status(500)
-        .json({
-          message:
-            "Error registering your account. Either this account already exists, or you didnt complete to form."
-        });
+      res.status(500).json({
+        message:
+          "Error registering your account. Either this account already exists, or you didnt complete to form."
+      });
     });
 });
 
@@ -72,21 +93,21 @@ router.post("/serviceWorkers/register", (req, res) => {
   user.accountBalance = 0;
   user.rating = 5;
   user.numOfRatings = 0;
+  console.log(hash);
 
   db("serviceWorkers")
     .insert(user)
     .returning()
     .then(saved => {
+      console.log("user", user);
       res.status(201).json(saved);
     })
     .catch(error => {
       console.log(error);
-      res
-        .status(500)
-        .json({
-          message:
-            "Error registering your account. Either this account already exists, or you didnt complete to form."
-        });
+      res.status(500).json({
+        message:
+          "Error registering your account. Either this account already exists, or you didnt complete to form."
+      });
     });
 });
 
